@@ -7,23 +7,21 @@
 EOF
 
 # 工具包目录
-help='help';
-
+help='helper';
 if [[ $# -lt 1 ]]; then
-    echo "您可以输入您的问题，我们会自动搜索对应的帮助。";
-    echo "使用方式为${0} \"您的问题\"";
+    echo "您可以告诉我您遇到的问题，我会尽量帮您解决一些问题。";
+    echo '';
     exit;
 elif ! [[ -r ${help} ]]; then
-    echo "哦，我的工具包找不到了!";
-    echo "帮我看看我的工具包${help}文件夹在不在我的身旁好吗(ㄒoㄒ)";
-    echo "如果存在的话能给我个权限访问吗";
-    echo "搞不定的话你可以联系下 my4cheng@gmail.com 或 1434389213@qq.com帮助你解决哦n(*≧▽≦*)n";
+    echo '遇到问题了吗？';
+    echo '如果你有需要，我就在 my4cheng@gmail.com || 1434389213@qq.com';
     exit;
 else
+    clear;
     ls=`ls ${help} | grep $1`;
     if ! [[ ${ls} ]]; then
         ls=`ls ${help}`;
-        echo "没有找到您需要的东西，但是我可以帮助您：";
+        echo '没有找到您需要的东西，但是我可以帮助您：';
     fi;
     i=0;
     com='';
@@ -33,14 +31,20 @@ else
         ((i++));
     done;
 
-    read -p "请输入您需要执行操作的编号：" in ;
+    read -p '请输入您需要执行操作的编号：' in ;
 
     com="${com[${in}]}";
     if [[ ${com} ]]; then
         com="${help}/${com[${in}]}/index.sh";
-        source ${com};
+        clear;
+        cat ${com};
+        echo '';
+        read -p '即将为您执行以上操作，请输入y确认:' in;
+        if [[ ${in} == 'y' ]]; then
+            source ${com};
+        fi;
     else
-        echo "无法执行此操作";
+        echo '无法执行此操作';
         exit 1;
     fi;
 
