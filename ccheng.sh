@@ -6,21 +6,34 @@
     qq email:       1434389213@qq.com
 EOF
 
-# 工具包目录
-help='helper';
-if [[ $# -lt 1 ]]; then
-    echo "您可以告诉我您遇到的问题，我会尽量帮您解决一些问题。";
+sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
+sys=${sys:1:-1};
+
+case $sys in
+    'Ubuntu'):
+    helper='ubuntu_helper';
+    ;;
+esac;
+
+
+if ! [[ ${helper} ]]; then
+    echo '抱歉，暂时无法在这个系统上运行';
     echo '';
     exit;
-elif ! [[ -r ${help} ]]; then
+elif [[ $# -lt 1 ]]; then
+    echo '您可以告诉我您遇到的问题，我会尽量帮助您解决。';
+    echo '';
+    exit;
+elif ! [[ -r ${helper} ]]; then
     echo '遇到问题了吗？';
-    echo '如果你有需要，我就在 my4cheng@gmail.com || 1434389213@qq.com';
+    echo '如果你有需要，我就在
+    my4cheng@gmail.com || 1434389213@qq.com';
     exit;
 else
     clear;
-    ls=`ls ${help} | grep $1`;
+    ls=`ls ${helper} | grep $1`;
     if ! [[ ${ls} ]]; then
-        ls=`ls ${help}`;
+        ls=`ls ${helper}`;
         echo '没有找到您需要的东西，但是我可以帮助您：';
     fi;
     i=0;
@@ -35,7 +48,7 @@ else
 
     com="${com[${in}]}";
     if [[ ${com} ]]; then
-        com="${help}/${com[${in}]}/index.sh";
+        com="${helper}/${com[${in}]}/index.sh";
         clear;
         cat ${com};
         echo '';
@@ -53,4 +66,4 @@ else
     unset ls;
 fi;
 
-unset help;
+unset helper;
