@@ -38,36 +38,41 @@ elif [[ `whoami` != 'root' ]]; then
     exit;
 else
     clear;
-    ls=`ls ${helper} | grep $1`;
+    ls=`ls ${helper} helper | grep $1`;
     if ! [[ ${ls} ]]; then
-        ls=`ls ${helper}`;
+        ls=`ls ${helper} helper`;
         echo '没有找到您需要的东西，但是我可以帮助您：';
     fi;
     i=0;
     com='';
     for l in ${ls}; do
-        echo "${i}  ${l}";
-        com[${i}]=${l};
-        ((i++));
+        if [[ `echo ${l} | grep -v ':'` ]]; then
+            echo "${i}  ${l}";
+            com[${i}]=${l};
+            ((i++));
+        fi;
     done;
 
     read -p '请输入您需要执行操作的编号：' in ;
 
     com="${com[${in}]}";
     if [[ ${com} ]]; then
-        com="${helper}/${com[${in}]}/index.sh";
+        ec="${helper}/${com[${in}]}/index.sh";
         clear;
-        cat ${com};
+        if ! [[ -r ${ec} ]]; then
+            ec="helper/${com[${in}]}/index.sh";
+        fi;
+        cat ${ec};
         echo '';
         read -p '即将为您执行以上操作，请输入y确认:' in;
         if [[ ${in} == 'y' ]]; then
-            source ${com};
+            source ${ec};
         fi;
     else
         echo '无法执行此操作';
         exit 1;
     fi;
-
+    unset ec;
     unset com;
     unset in;
     unset ls;
