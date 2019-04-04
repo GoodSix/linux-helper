@@ -32,7 +32,7 @@ elif ! [[ -r ${helper} ]]; then
     echo '如果你有需要，我就在
     my4cheng@gmail.com || 1434389213@qq.com';
     exit;
-elif [[ `whoami` != 'root' || ${USER} == 'root' ]]; then
+elif [[ `whoami` != 'root' && ${USER} == 'root' ]]; then
     echo '如果您要继续，必须切换至非root身份然后使用sudo权限执行
     ';
     exit;
