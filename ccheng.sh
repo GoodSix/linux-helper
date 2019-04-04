@@ -11,23 +11,30 @@ sys=${sys:1:-1};
 
 case $sys in
     'Ubuntu'):
-    helper='ubuntu_helper';
+        helper='ubuntu_helper';
+    ;;
+    'CentOS Linux'):
+        helper='centos_helper';
     ;;
 esac;
 
 
 if ! [[ ${helper} ]]; then
-    echo '抱歉，暂时无法在这个系统上运行';
-    echo '';
+    echo '抱歉，暂时无法在这个系统上运行
+    ';
     exit;
 elif [[ $# -lt 1 ]]; then
-    echo '您可以告诉我您遇到的问题，我会尽量帮助您解决。';
-    echo '';
+    echo '您可以告诉我您遇到的问题，我会尽量帮助您解决。
+    ';
     exit;
 elif ! [[ -r ${helper} ]]; then
     echo '遇到问题了吗？';
     echo '如果你有需要，我就在
     my4cheng@gmail.com || 1434389213@qq.com';
+    exit;
+elif [[ `whoami` != 'root' || ${USER} == 'root' ]]; then
+    echo '如果您要继续，必须切换至非root身份然后使用sudo权限执行
+    ';
     exit;
 else
     clear;
