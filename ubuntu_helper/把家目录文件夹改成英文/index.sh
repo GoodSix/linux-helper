@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+read -p '请输入您当前使用的账户名' user;
 
-mkdir /home/${USER}/Desktop;
-mkdir /home/${USER}/Downloads;
-mkdir /home/${USER}/Template;
-mkdir /home/${USER}/Public;
-mkdir /home/${USER}/Document;
-mkdir /home/${USER}/Music;
-mkdir /home/${USER}/Picture;
-mkdir /home/${USER}/Video;
+mkdir /home/${user}/Desktop;
+mkdir /home/${user}/Downloads;
+mkdir /home/${user}/Template;
+mkdir /home/${user}/Public;
+mkdir /home/${user}/Document;
+mkdir /home/${user}/Music;
+mkdir /home/${user}/Picture;
+mkdir /home/${user}/Video;
 
 (cat <<EOF
 # This file is written by xdg-user-dirs-update
@@ -26,5 +27,5 @@ XDG_MUSIC_DIR="\$HOME/Music"
 XDG_PICTURES_DIR="\$HOME/Picture"
 XDG_VIDEOS_DIR="\$HOME/Video"
 EOF
-) > /home/${USER}/.config/user-dirs.dirs;
+) > /home/${user}/.config/user-dirs.dirs;
 echo "请重启您的电脑以生效此设置";
