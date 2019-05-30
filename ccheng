@@ -40,6 +40,7 @@ elif [[ `whoami` != 'root' ]]; then
     exit;
 else
     clear;
+    `cd ${helper}`;
     ls=`ls ${helper} helper | grep $1`;
     if ! [[ ${ls} ]]; then
         ls=`ls ${helper} helper`;
