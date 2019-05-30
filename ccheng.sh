@@ -8,13 +8,15 @@ EOF
 
 sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
 sys=${sys:1:-1};
+helper=`which $0`;
+helper=${helper%/*};
 
 case $sys in
     'Ubuntu'):
-        helper='ubuntu_helper';
+        helper="$helper/ubuntu_helper";
     ;;
     'CentOS Linux'):
-        helper='centos_helper';
+        helper="$helper/centos_helper";
     ;;
 esac;
 
