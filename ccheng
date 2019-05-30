@@ -8,20 +8,20 @@ EOF
 
 sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
 sys=${sys:1:-1};
-helper=`which $0`;
-helper=${helper%/*};
+help=`which $0`;
+help=${help%/*};
 
 case $sys in
     'Ubuntu'):
-        helper="$helper/ubuntu_helper";
+        helper="$help/ubuntu_helper";
     ;;
     'CentOS Linux'):
-        helper="$helper/centos_helper";
+        helper="$help/centos_helper";
     ;;
 esac;
 
 
-if ! [[ ${helper} ]]; then
+if ! [[ ${help} ]]; then
     echo '抱歉，暂时无法在这个系统上运行
     ';
     exit;
@@ -29,7 +29,7 @@ elif [[ $# -lt 1 ]]; then
     echo '您可以告诉我您遇到的问题，我会尽量帮助您解决。
     ';
     exit;
-elif ! [[ -r ${helper} ]]; then
+elif ! [[ -r ${help} ]]; then
     echo '遇到问题了吗？';
     echo '如果你有需要，我就在
     my4cheng@gmail.com || 1434389213@qq.com';
@@ -40,10 +40,9 @@ elif [[ `whoami` != 'root' ]]; then
     exit;
 else
     clear;
-    `cd ${helper}`;
-    ls=`ls ${helper} | grep $1`;
+    ls=`ls ${helper} ${help} | grep $1`;
     if ! [[ ${ls} ]]; then
-        ls=`ls ${helper}`;
+        ls=`ls ${helper} ${help}`;
         echo '没有找到您需要的东西，但是我可以帮助您：';
     fi;
     i=0;
