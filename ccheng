@@ -62,7 +62,7 @@ else
         ec="${helper}/${com[${in}]}/index.sh";
         clear;
         if ! [[ -r ${ec} ]]; then
-            ec="helper/${com[${in}]}/index.sh";
+            ec="${help}/${com[${in}]}/index.sh";
         fi;
         cat ${ec};
         echo '';
