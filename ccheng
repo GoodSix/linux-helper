@@ -41,9 +41,9 @@ elif [[ `whoami` != 'root' ]]; then
 else
     clear;
     `cd ${helper}`;
-    ls=`ls ${helper} helper | grep $1`;
+    ls=`ls ${helper} | grep $1`;
     if ! [[ ${ls} ]]; then
-        ls=`ls ${helper} helper`;
+        ls=`ls ${helper}`;
         echo '没有找到您需要的东西，但是我可以帮助您：';
     fi;
     i=0;
