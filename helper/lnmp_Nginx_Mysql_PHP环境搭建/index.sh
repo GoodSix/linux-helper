@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-wget -O lnmp.gz http://soft.vpser.net/lnmp/lnmp1.5-full.tar.gz;
+git clone https://github.com/licess/lnmp.git lnmp;
 
-if [[ -f 'lnmp.gz' ]]; then
-    tar -zxvf lnmp.gz;
-    chmod +x lnmp1.5-full;
-    cd lnmp1.5-full;
-    ./install.sh
+if [[ -d 'lnmp' ]]; then
+    cd lnmp;
+    chmod +x *;
+    ./install.sh;
 fi;
