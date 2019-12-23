@@ -1,2 +1,1 @@
-# linux-helper
-Ubuntu下快速安装/配置
+为[eoogo/ubuntu](https://github.com/eoogo/docker-ubuntu)提供的初始化脚本，用于快速安装配置一些软件 
