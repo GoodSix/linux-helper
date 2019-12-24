@@ -22,8 +22,10 @@ case $sys in
 esac;
 
 script=`find $(dirname ${BASH_SOURCE}) -name "*$1*" | head -1`;
+if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
+
 description=$(cat $script | tail -1);
-if [[ $script && ! -z $description ]]; then
+if [[ $description && ${description:0:1} == '#' ]]; then
   read -p "Whether to perform operation $description (y confirmation): " confirm
   if [[ $confirm -eq 'y' ]]; then
     shift
@@ -32,6 +34,6 @@ if [[ $script && ! -z $description ]]; then
     exit 202;
   fi
 else
-  echo 'There is no executable script';
+  echo 'There are no supported scripts';
   exit 404;
 fi

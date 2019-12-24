@@ -1,7 +1,7 @@
 #!/bin/bash
 $(dirname ${BASH_SOURCE})/php-add-source.sh
 
-sudo apt install -y php7.2-fpm \
+apt install -y php7.2-fpm \
 php7.2-dev \
 php7.2-bcmath \
 php7.2-bz2 \
