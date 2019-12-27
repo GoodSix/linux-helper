@@ -1,10 +1,21 @@
 #!/bin/bash
-apt install -y nginx
-(cat <<CONFIG
-include /var/www/*.conf;
-CONFIG
-) > /etc/nginx/conf.d/include-www.conf
-service nginx start
+before() {
+  type nginx
+  return $?
+}
+
+setup() {
+  apt install -y nginx
+  cat "include /var/www/*.conf;" > /etc/nginx/conf.d/include-www.conf
+}
+
+start() {
+  service nginx start
+}
+
+stop() {
+  service nginx stop
+}
 
 # /etc/nginx
 # 安装nginx服务

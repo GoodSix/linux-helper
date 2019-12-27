@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 :<<EOF
-    script by
     github:         eoogo
-    google email:   my4cheng@gmail.com
     qq email:       1434389213@qq.com
 EOF
 
@@ -21,19 +19,45 @@ case $sys in
     ;;
 esac;
 
-script=`find $(dirname ${BASH_SOURCE}) -name "*$1*" | head -1`;
+# 当前执行的脚本绝对位置
+script=`find $helper/ -name "*$1*" | head -1`;
+
 if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
 
 description=$(cat $script | tail -1);
 if [[ $description && ${description:0:1} == '#' ]]; then
-  read -p "Whether to perform operation $description (y confirmation): " confirm
-  if [[ $confirm -eq 'y' ]]; then
+  read -p "Whether to perform operation
+   $description
+   y confirmation: " confirm
+  etc_path=`cd $(dirname ${BASH_SOURCE})/etc; pwd`
+  if [[ $confirm == 'y' ]]; then
     shift
-    $script $@
+    source $script $@
+    # 检测是否需要安装
+    if [[ `type before` ]]; then
+      before $etc_path
+      if [[ $? != 0 ]]; then
+        # 开始安装
+        if [[ `type setup` ]]; then
+          setup $etc_path;
+          unset setup;
+        fi;
+      else
+        echo 'The service is installed and is trying to start...'
+      fi
+      unset before;
+    fi
+    # 启动服务
+    if [[ `type start` ]]; then start $etc_path; unset start; fi
+
+    if [[ `type __after` ]]; then
+      after $script # 脚本执行完毕后的回调, 外部回调
+    fi
   else
-    exit 202;
+    echo 'Nothing changed'
+    exit 202
   fi
 else
-  echo 'There are no supported scripts';
-  exit 404;
+  echo 'There are no supported scripts'
+  exit 404
 fi
