@@ -15,5 +15,5 @@ stop() {
   echo 'stop'
 }
 
-#/etc/os-release
-#测试
+# /etc/os-release
+# 测试
