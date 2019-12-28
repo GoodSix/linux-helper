@@ -50,7 +50,7 @@ if [[ $description && ${description:0:1} == '#' ]]; then
     if [[ `type start` ]]; then start $etc_path; unset start; fi
 
     if [[ `type __after` ]]; then
-      after $script # 脚本执行完毕后的回调, 外部回调
+      __after $script # 脚本执行完毕后的回调, 外部回调
     fi
   else
     echo 'Nothing changed'
