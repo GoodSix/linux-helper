@@ -16,4 +16,4 @@ stop() {
 }
 
 #/etc/os-release
-# 测试
+#测试

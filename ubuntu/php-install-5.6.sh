@@ -39,4 +39,4 @@ stop() {
   service php5.6-fpm stop
 }
 
-# 安装PHP5.6和常用扩展包
+#安装PHP5.6和常用扩展包

@@ -43,4 +43,4 @@ stop() {
 }
 
 #/var/lib/redis
-# 安装redis服务
+#安装redis服务

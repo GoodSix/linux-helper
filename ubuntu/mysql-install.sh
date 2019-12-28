@@ -33,4 +33,4 @@ stop() {
 
 #/etc/mysql
 #/var/lib
-# 安装mysql5.7服务, 默认开启远程, 账号:root密码:eoogo
+#安装mysql5.7服务, 默认开启远程, 账号:root密码:eoogo

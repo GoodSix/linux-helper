@@ -15,4 +15,4 @@ setup() {
   echo 'PATH="$PATH:/usr/local/nodejs/bin"' >> ~/.bashrc
 }
 
-# 为当前用户安装nodejs，安装后需要重新登录
+#为当前用户安装nodejs，安装后需要重新登录

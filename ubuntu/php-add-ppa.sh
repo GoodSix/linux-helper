@@ -11,4 +11,4 @@ setup() {
 }
 
 
-# 从PPA添加PHP镜像源
+#从PPA添加PHP镜像源
