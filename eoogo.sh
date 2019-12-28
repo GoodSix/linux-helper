@@ -47,7 +47,7 @@ if [[ $description && ${description:0:1} == '#' ]]; then
       unset before;
     fi
     # 启动服务
-    if [[ `type start` ]]; then start $etc_path; unset start; fi
+    if [[ `type start` ]]; then start; unset start; fi
 
     if [[ `type __after` ]]; then
       __after $script # 脚本执行完毕后的回调, 外部回调
