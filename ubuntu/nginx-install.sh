@@ -6,7 +6,7 @@ before() {
 
 setup() {
   apt install -y nginx
-  cat "include /var/www/*.conf;" > /etc/nginx/conf.d/include-www.conf
+  echo 'include /var/www/*.conf;' > /etc/nginx/conf.d/include-www.conf
 }
 
 start() {
