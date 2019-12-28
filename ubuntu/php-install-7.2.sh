@@ -39,5 +39,5 @@ stop () {
   service php7.2-fpm stop
 }
 
-#/etc/php
-#安装PHP7.2和常用扩展包
+# /etc/php
+# 安装PHP7.2和常用扩展包

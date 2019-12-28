@@ -26,7 +26,7 @@ if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
 description=$(cat $script | tail -1);
 if [[ $description && ${description:0:1} == '#' ]]; then
   read -p "Whether to perform operation
-   $description#
+   $description #
    y confirmation: " confirm
   etc_path=`cd $(dirname ${BASH_SOURCE})/etc; pwd`
   if [[ $confirm == 'y' ]]; then

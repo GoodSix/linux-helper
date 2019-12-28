@@ -17,5 +17,5 @@ stop() {
   service nginx stop
 }
 
-#/etc/nginx
-#安装nginx服务
+# /etc/nginx
+# 安装nginx服务

@@ -42,5 +42,5 @@ stop() {
   echo 'redis的停止的脚本暂时没写好呢，自己去停止一下吧'
 }
 
-#/var/lib/redis
-#安装redis服务
+# /var/lib/redis
+# 安装redis服务

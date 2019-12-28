@@ -15,5 +15,5 @@ stop() {
   echo 'stop'
 }
 
-# /etc/os-release
+# /etc/network
 # 测试
