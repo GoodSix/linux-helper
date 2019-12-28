@@ -6,9 +6,7 @@ EOF
 
 sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
 sys=${sys:1:-1};
-help=`which $0`;
-help=${help%/*};
-if [[ -z $help ]]; then help='.'; fi
+help=`dirname ${BASH_SOURCE}`
 
 # 获取对应系统的脚本
 case $sys in
