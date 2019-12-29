@@ -11,7 +11,7 @@ setup() {
   php7.2-dev \
   php7.2-bcmath \
   php7.2-bz2 \
-  php7.2-cul \
+  php7.2-curl \
   php7.2-gd \
   php7.2-mbstring \
   php7.2-mysqli \

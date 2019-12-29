@@ -11,7 +11,7 @@ setup() {
   php5.6-dev \
   php5.6-bcmath \
   php5.6-bz2 \
-  php5.6-cul \
+  php5.6-curl \
   php5.6-gd \
   php5.6-mbstring \
   php5.6-mysqli \

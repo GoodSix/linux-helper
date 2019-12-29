@@ -1,12 +1,11 @@
 #!/bin/bash
 before() {
-  extension_dir=`php7.2 -r "echo ini_get('extension_dir');"`
-  if [[ -z $extension_dir ]]; then
-    echo -e "\033[31m No extension directory configuration found, please check if php7.2 is installed \033[0m"
-    return 0;
+  if [[ ! `type php7.2` ]]; then echo 'No php7.2 installed'; return 0 fi
+  if [[ `php7.2 -m | grep 'redis'` ]]; then
+    return 0
+  else
+    return 1
   fi
-  if [[ -d $extension_dir/redis ]]; then return 0;
-  else return 1; fi
 }
 
 setup() {
@@ -18,12 +17,10 @@ setup() {
   phpize && \
   ./configure --with-php-config=php-config && \
   make && make install && \
-  mkdir $extension_dir/redis && \
-  mv modules/redis.so $extension_dir/redis/redis.so && \
   echo '' >> /etc/php/7.2/fpm/php.ini && \
-  echo 'extension=redis/redis' >> /etc/php/7.2/fpm/php.ini && \
+  echo 'extension=redis' >> /etc/php/7.2/fpm/php.ini && \
   echo '' >> /etc/php/7.2/cli/php.ini && \
-  echo 'extension=redis/redis' >> /etc/php/7.2/cli/php.ini
+  echo 'extension=redis' >> /etc/php/7.2/cli/php.ini
 
   cd ..
   rm -rf redis.tgz redis-* package.xml
