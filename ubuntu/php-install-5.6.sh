@@ -11,24 +11,26 @@ setup() {
   php5.6-dev \
   php5.6-bcmath \
   php5.6-bz2 \
-  php5.6-curl \
-  php5.6-dom \
+  php5.6-cul \
   php5.6-gd \
   php5.6-mbstring \
   php5.6-mysqli \
   php5.6-odbc \
-  php5.6-pdo-mysql \
-  php5.6-pdo-odbc \
   php5.6-pdo-pgsql \
   php5.6-pdo-sqlite \
-  php5.6-simplexml \
   php5.6-soap \
-  php5.6-sqlite3 \
-  php5.6-tidy \
-  php5.6-wddx \
-  php5.6-xml \
-  php5.6-xsl \
-  php5.6-lib
+  php5.6-tidy
+
+  if [[ -e /etc/nginx ]]; then
+    echo 'location ~ [^/]\.php(/|$) {
+    fastcgi_pass  /var/run/php/php5.6-fpm.sock;
+    fastcgi_index  index.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    fastcgi_param  PATH_INFO $fastcgi_path_info;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}' > /etc/nginx/enable-php5.6.conf
+  fi
 }
 
 start() {
@@ -39,4 +41,5 @@ stop() {
   service php5.6-fpm stop
 }
 
+# /etc/php
 # 安装PHP5.6和常用扩展包

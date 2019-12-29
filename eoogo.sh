@@ -19,8 +19,8 @@ case $sys in
 esac;
 
 # 当前执行的脚本绝对位置
-script=`find $helper/ -name "*$1*" | head -1`;
-
+script=`find $helper/ -name "$1.sh" | head -1`;
+if [[ ! $script ]]; then script=`find $helper/ -name "$1*.sh" | head -1`; fi
 if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
 
 description=$(cat $script | tail -1);
