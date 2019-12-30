@@ -14,15 +14,15 @@ setup() {
   php5.6-curl \
   php5.6-gd \
   php5.6-mbstring \
-  php5.6-mysqli \
   php5.6-odbc \
-  php5.6-pdo-pgsql \
-  php5.6-pdo-sqlite \
   php5.6-soap \
-  php5.6-tidy
+  php5.6-tidy \
+  php5.6-zip \
+  php5.6-intl \
+  composer
 
-  if [[ -e /etc/nginx ]]; then
-    echo 'location ~ [^/]\.php(/|$) {
+  if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
+  echo 'location ~ [^/]\.php(/|$) {
     fastcgi_pass  unix:/var/run/php/php5.6-fpm.sock;
     fastcgi_index  index.php;
     fastcgi_split_path_info ^(.+\.php)(.*)$;
@@ -30,7 +30,6 @@ setup() {
     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     include        fastcgi_params;
 }' > /etc/nginx/enable-php5.6.conf
-  fi
 }
 
 start() {

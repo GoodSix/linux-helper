@@ -14,15 +14,16 @@ setup() {
   php7.2-curl \
   php7.2-gd \
   php7.2-mbstring \
-  php7.2-mysqli \
+  php7.2-mysql \
   php7.2-odbc \
-  php7.2-pdo-pgsql \
-  php7.2-pdo-sqlite \
   php7.2-soap \
-  php7.2-tidy
+  php7.2-tidy \
+  php7.2-zip \
+  php7.2-intl \
+  composer
 
-  if [[ -e /etc/nginx ]]; then
-    echo 'location ~ [^/]\.php(/|$) {
+  if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
+  echo 'location ~ [^/]\.php(/|$) {
     fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
     fastcgi_index  index.php;
     fastcgi_split_path_info ^(.+\.php)(.*)$;
@@ -30,7 +31,6 @@ setup() {
     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     include        fastcgi_params;
 }' > /etc/nginx/enable-php7.2.conf
-  fi
 }
 
 start() {

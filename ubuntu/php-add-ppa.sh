@@ -6,7 +6,7 @@ before() {
 setup() {
   apt-get install python-software-properties -y
   apt-get install software-properties-common -y
-  echo -e "\n" | add-apt-repository ppa:ondrej/php5-oldstable
+  echo -e "\n" | add-apt-repository ppa:ondrej/php
   apt update
 }
 

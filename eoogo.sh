@@ -11,23 +11,26 @@ help=`dirname ${BASH_SOURCE}`
 # 获取对应系统的脚本
 case $sys in
     'Ubuntu'):
-        helper="$help/ubuntu";
+        helper="$help/ubuntu"
     ;;
     'CentOS Linux'):
-        helper="$help/centos";
+        helper="$help/centos"
     ;;
 esac;
 
 # 当前执行的脚本绝对位置
-script=`find $helper/ -name "$1.sh" | head -1`;
-if [[ ! $script ]]; then script=`find $helper/ -name "$1*.sh" | head -1`; fi
+if [[ ! -f "$1.sh" ]]; then
+  script=`find $helper/ -name "$1.sh" | head -1`;
+  if [[ ! $script ]]; then script=`find $helper/ -name "$1*.sh" | head -1`; fi
+else
+  script="$1.sh"
+fi
 if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
 
 description=$(cat $script | tail -1);
 if [[ $description && ${description:0:1} == '#' ]]; then
-  read -p "Whether to perform operation
-   $description #
-   y confirmation: " confirm
+  read -p "$description #
+  Enter [y] to start execution: " confirm
   etc_path=`cd $(dirname ${BASH_SOURCE})/etc; pwd`
   if [[ $confirm == 'y' ]]; then
     shift
@@ -52,6 +55,7 @@ if [[ $description && ${description:0:1} == '#' ]]; then
     if [[ `type __after` ]]; then
       __after $script # 脚本执行完毕后的回调, 外部回调
     fi
+    source ~/.bashrc # 刷新环境变量
   else
     echo 'Nothing changed'
     exit 202

@@ -12,7 +12,7 @@ setup() {
 
     user=`cat /etc/mysql/debian.cnf | grep 'user' | grep -o '= .*$' | head -1`
     password=`cat /etc/mysql/debian.cnf | grep 'password' | grep -o '= .*$' | head -1`
-    mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified by "eoogo" with grant option;'
+    mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified by "root" with grant option;'
     mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"localhost" identified by "root" with grant option;'
     mysql -u${user:2} -p${password:2} -e 'flush privileges;'
     service mysql stop
@@ -32,5 +32,5 @@ stop() {
 
 
 # /etc/mysql
-# /var/lib
-# 安装mysql5.7服务, 默认开启远程, 账号:root密码:eoogo
+# /var/lib/mysql
+# 安装mysql5.7服务,默认开启远程,账号:root密码:root
