@@ -23,7 +23,7 @@ setup() {
 
   if [[ -e /etc/nginx ]]; then
     echo 'location ~ [^/]\.php(/|$) {
-    fastcgi_pass  /var/run/php/php7.2-fpm.sock;
+    fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
     fastcgi_index  index.php;
     fastcgi_split_path_info ^(.+\.php)(.*)$;
     fastcgi_param  PATH_INFO $fastcgi_path_info;
