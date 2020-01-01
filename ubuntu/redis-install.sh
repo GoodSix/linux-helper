@@ -30,7 +30,9 @@ setup() {
   echo 'cd $(dirname ${BASH_SOURCE}) && ./redis_server ./redis.conf' > redis-server
   chmod +x redis-server
 
-  cp $1/redis/redis.conf /usr/local/redis/redis.conf
+  if [[ $eoogo_docker_devt ]]; then # 在docker中运用此配置
+    cp $1/redis/redis.conf /usr/local/redis/redis.conf
+  fi
   echo 'PATH=$PATH:/usr/local/redis' >> ~/.bashrc
 }
 

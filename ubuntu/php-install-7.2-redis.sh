@@ -4,6 +4,7 @@ before() {
   if [[ `php7.2 -m | grep 'redis'` ]]; then
     return 0
   else
+    `dirname $1`/eoogo.sh redis-install # 自动安装redis服务
     return 1
   fi
 }
