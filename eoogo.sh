@@ -42,19 +42,20 @@ if [[ $description && ${description:0:1} == '#' ]]; then
         # 开始安装
         if [[ `type setup` ]]; then
           setup $etc_path;
+          # 配置完毕后的回调, 外部回调事件处理
+          if [[ `type __after` ]]; then
+            __after $script
+          fi
           unset setup;
         fi;
       else
         echo 'The service is installed and is trying to start...'
       fi
       unset before;
+      # 安装后启动服务
+      if [[ `type start` ]]; then start; unset start; fi
     fi
-    # 启动服务
-    if [[ `type start` ]]; then start; unset start; fi
 
-    if [[ `type __after` ]]; then
-      __after $script # 脚本执行完毕后的回调, 外部回调
-    fi
     source ~/.bashrc # 刷新环境变量
   else
     echo 'Nothing changed'

@@ -32,6 +32,7 @@ before() { # 该方法必须存在并返回非0， 否则不会执行setup
 setup() {
     # install script
     # 开始安装服务
+    # 执行完毕后服务不应处于开启状态，声明start函数自动开启
 }
 
 start() {
