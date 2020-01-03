@@ -19,7 +19,7 @@
 > docker run -it -v `pwd`/myScript.sh:/var/www/myScript.sh eoogo/devt #要安装的环境# /var/www/myScript
 
 
-
+以下是脚本基本结构示例
 ```shell
 #!/bin/bash
 
