@@ -22,7 +22,7 @@ setup() {
   php7.2-intl \
   php7.2-dom \
   php7.2-xml \
-  php7.2-xsl
+  php7.2-xsl \
   composer
 
   if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi

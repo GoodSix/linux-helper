@@ -20,7 +20,7 @@ setup() {
   php5.6-zip \
   php5.6-intl \
   php5.6-xsl \
-  php5.6-xml
+  php5.6-xml \
   composer
 
   if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
