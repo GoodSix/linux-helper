@@ -24,7 +24,7 @@ xdebug.remote_autostart=On
 xdebug.remote_enable=On
 xdebug.remote_host=0.0.0.0
 xdebug.remote_port=9001' >> /etc/php/5.6/cli/php.ini && \
-  service php7.2-fpm restart # 重启PHP服务
+  service php5.6-fpm restart # 重启PHP服务
 }
 
 # 开启php5.6的xdebug扩展
