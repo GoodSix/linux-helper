@@ -25,6 +25,8 @@ setup() {
 
   cd ..
   rm -rf redis.tgz redis-* package.xml
+
+  service php7.2 restart # 重启php服务
 }
 
 # 安装php7.2的redis模块
