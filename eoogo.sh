@@ -19,8 +19,14 @@ case $sys in
 esac;
 
 # 当前执行的脚本绝对位置
+# 第一次: 检测是否为实际文件路径
+# 第二次: 检测在/var/www/下是否存在
+# 第三次: 在eoogo/助手目录下绝对搜索
+# 第四次: 在eoogo/助手目录下模糊搜索
 if [[ ! -f "$1.sh" ]]; then
-  script=`find $helper/ -name "$1.sh" | head -1`;
+  # 检测脚本在eoogo/docker-devt的工作目录是否存在，不是实际的文件并且在工作目录也没有的时候才会去助手中搜索
+  script="/var/www/$1.sh"
+  if [[ ! -f $script ]]; then script=`find $helper/ -name "$1.sh" | head -1`; fi
   if [[ ! $script ]]; then script=`find $helper/ -name "$1*.sh" | head -1`; fi
 else
   script="$1.sh"
