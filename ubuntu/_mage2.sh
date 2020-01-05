@@ -6,8 +6,6 @@ before() {
 
 setup() {
     cd /var/www
-    if [[ ! -d magento2 ]]; then git clone https://github.com/magento/magento2; fi
-
     echo 'upstream fastcgi_backend {
 	server unix:/var/run/php/php7.2-fpm.sock;
 }
@@ -17,12 +15,12 @@ server {
 	server_name _;
 	set $MAGE_ROOT /var/www/magento2;
 	include /var/www/magento2/nginx.conf.sample;
-}' > nginx.conf
-
-    chmod -R 777 magento2
-    cd magento2
-    git checkout 2.2
-    composer install
+}' > nginx.conf && \
+    git clone https://github.com/magento/magento2 && \
+    chmod -R 777 magento2 && \
+    cd magento2 && \
+    git checkout 2.2 && \
+    composer install && \
     mysql -uroot -proot -e "create database magento;"
 }
 
