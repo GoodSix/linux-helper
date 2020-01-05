@@ -17,10 +17,11 @@ server {
 	include /var/www/magento2/nginx.conf.sample;
 }' > nginx.conf && \
     git clone https://github.com/magento/magento2 && \
-    chmod -R 777 magento2 && \
     cd magento2 && \
     git checkout 2.2 && \
+    chmod -R 777 * && \
     composer install && \
+    nginx -s reload && \
     mysql -uroot -proot -e "create database magento;"
 }
 
