@@ -11,7 +11,6 @@ setup() {
   echo -e 'y' | `dirname $1`/eoogo.sh php-install-5.6
   echo -e 'y' | `dirname $1`/eoogo.sh nginx-install
   echo -e 'y' | `dirname $1`/eoogo.sh mysql-install
-  rm -f /etc/nginx/sites-enabled/default
 }
 
 start() {

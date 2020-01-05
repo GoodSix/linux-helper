@@ -7,6 +7,7 @@ before() {
 setup() {
   apt install -y nginx
   echo 'include /var/www/*.conf;' > /etc/nginx/conf.d/include-www.conf
+  rm -f /etc/nginx/sites-enable/default
 }
 
 start() {
