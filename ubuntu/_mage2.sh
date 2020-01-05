@@ -20,6 +20,7 @@ server {
 }' > nginx.conf
 
     cd magento2
+    git checkout 2.2
     composer install
 }
 
