@@ -8,9 +8,9 @@ before() {
 }
 
 setup() {
-  echo -e 'y' | `dirname $1`/eoogo.sh php-install-7.2
-  echo -e 'y' | `dirname $1`/eoogo.sh nginx-install
-  echo -e 'y' | `dirname $1`/eoogo.sh mysql-install
+  echo -e 'y' | source `dirname $1`/eoogo.sh php-install-7.2
+  echo -e 'y' | source `dirname $1`/eoogo.sh nginx-install
+  echo -e 'y' | source `dirname $1`/eoogo.sh mysql-install
 }
 
 start() {

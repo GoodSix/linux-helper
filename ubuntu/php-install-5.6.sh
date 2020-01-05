@@ -5,7 +5,7 @@ before() {
 }
 
 setup() {
-  echo -e 'y' | `dirname $1`/eoogo.sh php-add-ppa
+  echo -e 'y' | source `dirname $1`/eoogo.sh php-add-ppa
   
   apt install -y php5.6-fpm \
   php5.6-dev \

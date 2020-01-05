@@ -1,6 +1,6 @@
 #!/bin/bash
 before() {
-    echo -e 'y' | `dirname $1`/eoogo.sh _lnmp
+    echo -e 'y' | source `dirname $1`/eoogo.sh _lnmp
     return 1
 }
 
