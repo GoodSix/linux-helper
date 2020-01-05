@@ -19,9 +19,11 @@ server {
 	include /var/www/magento2/nginx.conf.sample;
 }' > nginx.conf
 
+    chmod -R 777 magento2
     cd magento2
     git checkout 2.2
     composer install
+    mysql -uroot -proot -e "create database magento;"
 }
 
 
