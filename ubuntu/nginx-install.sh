@@ -1,21 +1,21 @@
 #!/bin/bash
 before() {
-  type nginx
-  return $?
+    type nginx
+    return $?
 }
 
 setup() {
-  apt install -y nginx
-  echo 'include /var/www/*.conf;' > /etc/nginx/conf.d/include-www.conf
-  rm -f /etc/nginx/sites-enabled/default
+    apt install -y nginx
+    echo 'include /var/www/*.conf;' > /etc/nginx/conf.d/include-www.conf
+    rm -f /etc/nginx/sites-enabled/default
 }
 
 start() {
-  service nginx start
+    service nginx start
 }
 
 stop() {
-  service nginx stop
+    service nginx stop
 }
 
 # /etc/nginx

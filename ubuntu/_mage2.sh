@@ -2,9 +2,9 @@
 before() {
     echo -e 'y' | source `dirname $1`/eoogo.sh _lnmp
     if [[ -d /var/www/magento2 ]]; then
-	return 0;
+	    return 0;
     else
-	return 1;
+	    return 1;
     fi
 }
 
@@ -29,5 +29,8 @@ server {
     mysql -uroot -proot -e "create database magento;"
 }
 
-
+# /etc/nginx
+# /etc/php
+# /etc/mysql
+# /var/lib/mysql
 # 初始化magento2项目

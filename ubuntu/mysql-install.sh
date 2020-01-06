@@ -1,36 +1,36 @@
 #!/bin/bash
 before() {
-  type mysql
-  return $?
+    type mysql
+    return $?
 }
 
 setup() {
-  apt install -y mysql-server-5.7
-  if [[ $eoogo_docker_devt ]]; then
-    # 在容器中引入这个配置默认配置
-    cp $1/mysql/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
-  fi
-  if [[ `service mysql start` ]]; then
-    user=`cat /etc/mysql/debian.cnf | grep 'user' | grep -o '= .*$' | head -1`
-    password=`cat /etc/mysql/debian.cnf | grep 'password' | grep -o '= .*$' | head -1`
-    if [[ $eoogo_docker_devt ]]; then # 在容器中自动添加远程连接身份
-      mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified by "root" with grant option;'
+    apt install -y mysql-server-5.7
+    if [[ $eoogo_docker_devt ]]; then
+        # 在容器中引入这个配置默认配置
+        cp $1/mysql/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
     fi
-    mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"localhost" identified by "root" with grant option;'
-    mysql -u${user:2} -p${password:2} -e 'flush privileges;'
-    service mysql stop
-  else
-    echo 'mysql安装失败了';
-    exit 500;
-  fi
+    if [[ `service mysql start` ]]; then
+        user=`cat /etc/mysql/debian.cnf | grep 'user' | grep -o '= .*$' | head -1`
+        password=`cat /etc/mysql/debian.cnf | grep 'password' | grep -o '= .*$' | head -1`
+        if [[ $eoogo_docker_devt ]]; then # 在容器中自动添加远程连接身份
+            mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified by "root" with grant option;'
+        fi
+        mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"localhost" identified by "root" with grant option;'
+        mysql -u${user:2} -p${password:2} -e 'flush privileges;'
+        service mysql stop
+    else
+        echo 'mysql安装失败了';
+        exit 500;
+    fi
 }
 
 start() {
-  service mysql start
+    service mysql start
 }
 
 stop() {
-  service mysql stop
+    service mysql stop
 }
 
 
