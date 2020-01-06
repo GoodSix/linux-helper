@@ -1,7 +1,7 @@
 #!/bin/bash
 :<<EOF
-        github:                 eoogo
-        qq email:             1434389213@qq.com
+    github:   eoogo
+    qq email: 1434389213@qq.com
 EOF
 
 sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
@@ -10,12 +10,12 @@ help=`dirname ${BASH_SOURCE}`
 
 # 获取对应系统的脚本
 case $sys in
-        'Ubuntu'):
-                helper="$help/ubuntu"
-        ;;
-        'CentOS Linux'):
-                helper="$help/centos"
-        ;;
+    'Ubuntu'):
+        helper="$help/ubuntu"
+    ;;
+    'CentOS Linux'):
+        helper="$help/centos"
+    ;;
 esac;
 
 # script=当前执行的脚本绝对位置
