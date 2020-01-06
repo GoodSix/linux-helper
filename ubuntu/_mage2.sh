@@ -1,7 +1,11 @@
 #!/bin/bash
 before() {
     echo -e 'y' | source `dirname $1`/eoogo.sh _lnmp
-    return 1
+    if [[ -d /var/www/magento2 ]]; then
+	return 0;
+    else
+	return 1;
+    fi
 }
 
 setup() {
