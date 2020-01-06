@@ -62,7 +62,7 @@ if [[ $description && ${description:0:1} == '#' ]]; then
                     unset setup;
                 fi;
             elif [[ $recursion == 0 ]]
-                echo 'The service is installed and is trying to start...'
+                echo 'The service is installed and is trying to start...';
             fi
             unset before;
             # 安装后启动最外层服务
