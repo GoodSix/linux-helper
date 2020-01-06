@@ -25,8 +25,24 @@ server {
     git checkout 2.2 && \
     chmod -R 777 * && \
     composer install && \
+    service nginx start && \
     nginx -s reload && \
-    mysql -uroot -proot -e "create database magento;"
+    service nginx stop && \
+    service mysql start && \
+    mysql -uroot -proot -e "create database magento;" && \
+    service mysql stop
+}
+
+start() {
+    service nginx start
+    service php7.2-fpm start
+    service mysql start
+}
+
+stop() {
+    service nginx stop
+    service php7.2-fpm stop
+    service mysql stop
 }
 
 # /etc/nginx
