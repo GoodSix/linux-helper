@@ -4,6 +4,17 @@
     qq email: 1434389213@qq.com
 EOF
 
+if [[ `whoami` != 'root' ]]; then
+    echo '为保证正常执行后续命令，请以管理员身份执行';
+fi
+
+# 递归调用深度
+if [[ ! $recursion ]]; then
+    let recursion=0
+else
+    let recursion++
+fi
+
 sys=`awk -F= '/^NAME/{print $2}' /etc/os-release`;
 sys=${sys:1:-1};
 help=`dirname ${BASH_SOURCE}`
@@ -15,6 +26,11 @@ case $sys in
     ;;
     'CentOS Linux'):
         helper="$help/centos"
+        # 如果不为docker增加在docker中使用的源
+        if [[ ! $eoogo_docker_devt && $recursion == 0 && `tac /etc/apt/sources.list | head -1` != '# eoogo' ]]; then
+            curl https://raw.githubusercontent.com/eoogo/docker-ubuntu/master/apt/sources.list >> /etc/apt/sources.list && \
+            apt update
+        fi
     ;;
 esac;
 
@@ -32,13 +48,6 @@ else
     script="$1.sh"
 fi
 if [[ ! $script ]]; then echo 'There is no executable script'; exit 404; fi
-
-# 递归调用深度
-if [[ ! $recursion ]]; then
-    let recursion=0
-else
-    let recursion++
-fi
 
 description=$(cat $script | tail -1);
 if [[ $description && ${description:0:1} == '#' ]]; then
