@@ -19,7 +19,7 @@ server {
 	server_name _;
 	set $MAGE_ROOT /var/www/magento2;
 	include /var/www/magento2/nginx.conf.sample;
-}' > nginx.conf && \
+}' > _mage2.conf && \
     git clone https://github.com/magento/magento2 && \
     cd magento2 && \
     git checkout 2.2 && \
