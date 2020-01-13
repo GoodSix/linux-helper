@@ -1,4 +1,7 @@
-为[eoogo/ubuntu](https://github.com/eoogo/docker-ubuntu)提供的初始化脚本，用于快速安装配置一些软件 
+**为[eoogo/ubuntu](https://github.com/eoogo/docker-ubuntu)提供的初始化脚本，用于快速安装配置一些软件**
+
+- [基本环境参考](https://github.com/eoogo/docker-ubuntu),[现有可用命令参考](./command.md)
+
 
 文件名规则为`服务名称-服务行为-扩展`  
 在脚本文件中最后一行注释为功能介绍  
@@ -16,7 +19,7 @@
 如果脚本中未包含以上任何函数不会进行之后的操作  
 
 因此和[docker-devt](https://github.com/eoogo/docker-devt)搭配可以存在这种写法
-> docker run -it -v `pwd`/myScript.sh:/var/www/myScript.sh eoogo/devt #要安装的环境# /var/www/myScript
+> docker run -it -v `pwd`/myScript.sh:/var/www/myScript.sh eoogo/devt #要安装的环境# myScript
 
 
 以下是脚本基本结构示例

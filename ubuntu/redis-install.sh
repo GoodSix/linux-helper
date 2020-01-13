@@ -19,6 +19,10 @@ setup() {
     if [[ ! `type make` ]]; then apt install -y make; fi
 
     make && make install
+    if [[ $? ]]; then
+        echo 'Redis编译失败';
+	    exit 500;
+    fi
 
     mv src/redis-server /usr/local/redis/redis_server
     mv src/redis-cli /usr/local/redis/
@@ -35,7 +39,7 @@ setup() {
     cd /usr/local/redis
     echo 'cd $(dirname ${BASH_SOURCE}) && ./redis_server ./redis.conf' > redis-server
     chmod +x redis-server
-    echo '"PATH=$PATH:/usr/local/redis"' >> ~/.bashrc
+    echo 'PATH=$PATH:/usr/local/redis' >> ~/.bashrc
 }
 
 start() {
