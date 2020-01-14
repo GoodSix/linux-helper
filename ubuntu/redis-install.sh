@@ -43,7 +43,7 @@ setup() {
 }
 
 start() {
-    /usr/loca/redis/redis-server
+    /usr/local/redis/redis-server
 }
 
 stop() {
