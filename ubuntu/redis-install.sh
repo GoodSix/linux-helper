@@ -19,8 +19,8 @@ setup() {
     if [[ ! `type make` ]]; then apt install -y make; fi
 
     make && make install
-    if [[ $? ]]; then
-        echo 'Redis编译失败';
+    if [[ ! -f src/redis-server ]]; then
+        echo 'Redis安装失败';
 	    exit 500;
     fi
 
