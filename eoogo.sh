@@ -28,7 +28,7 @@ case $sys in
         helper="$help/centos"
         # 如果不为docker增加在docker中使用的源
         if [[ ! $eoogo_docker_devt && $recursion == 0 && `tac /etc/apt/sources.list | head -1` != '# eoogo' ]]; then
-            curl https://raw.githubusercontent.com/eoogo/docker-ubuntu/master/apt/sources.list >> /etc/apt/sources.list && \
+            curl https://raw.githubusercontent.com/eoogo/docker-ubuntu/master/apt/sources.list > /etc/apt/sources.list && \
             apt update
         fi
     ;;
