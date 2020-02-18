@@ -8,10 +8,10 @@ setup() {
     if [[ `apt install -y mysql-server-5.7 && service mysql start` ]]; then
         user=`cat /etc/mysql/debian.cnf | grep 'user' | grep -o '= .*$' | head -1`
         password=`cat /etc/mysql/debian.cnf | grep 'password' | grep -o '= .*$' | head -1`
-        mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"localhost" identified by "root" with grant option;'
+        mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"localhost" identified with mysql_native_password by "root" with grant option;'
         mysql -u${user:2} -p${password:2} -e 'flush privileges;'
         if [[ $eoogo_docker_devt ]]; then # 在容器中自动添加远程连接身份
-            mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified by "root" with grant option;'
+            mysql -u${user:2} -p${password:2} -e 'grant all privileges on *.* to root@"%" identified with mysql_native_password by "root" with grant option;'
         fi
         service mysql stop
         if [[ $eoogo_docker_devt ]]; then # 在容器中引入这个配置默认配置
