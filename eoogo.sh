@@ -6,6 +6,7 @@ EOF
 
 if [[ `whoami` != 'root' ]]; then
     echo '为保证正常执行后续命令，请以管理员身份执行';
+    exit 1;
 fi
 
 # 递归调用深度
@@ -21,18 +22,31 @@ help=`dirname ${BASH_SOURCE}`
 
 # 获取对应系统的脚本
 case $sys in
-    'Ubuntu'):
-        helper="$help/ubuntu"
-    ;;
-    'CentOS Linux'):
-        helper="$help/centos"
+    'KDE neon'):
+	helper="$help/ubuntu"
         # 如果不为docker增加在docker中使用的源
         if [[ ! $eoogo_docker_devt && $recursion == 0 && `tac /etc/apt/sources.list | head -1` != '# eoogo' ]]; then
             curl https://raw.githubusercontent.com/eoogo/docker-ubuntu/master/apt/sources.list > /etc/apt/sources.list && \
             apt update
         fi
     ;;
+    'Ubuntu'):
+        helper="$help/ubuntu"
+	# 如果不为docker增加在docker中使用的源
+        if [[ ! $eoogo_docker_devt && $recursion == 0 && `tac /etc/apt/sources.list | head -1` != '# eoogo' ]]; then
+            curl https://raw.githubusercontent.com/eoogo/docker-ubuntu/master/apt/sources.list > /etc/apt/sources.list && \
+            apt update
+        fi
+    ;;
+    'CentOS Linux'):
+        helper="$help/centos"
+    ;;
 esac;
+
+if [[ ! -d $help ]]; then
+	echo 'This system is not supported';
+	exit 4;
+fi
 
 # script=当前执行的脚本绝对位置
 # 第一次: 检测是否为实际文件路径
