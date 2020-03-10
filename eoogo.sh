@@ -98,5 +98,6 @@ if [[ $description && ${description:0:1} == '#' ]]; then
     fi
 else
     echo 'There are no supported scripts'
+    cat ./command.md
     exit 404
 fi
