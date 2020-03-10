@@ -21,6 +21,8 @@ setup() {
     php5.6-intl \
     php5.6-xsl \
     php5.6-xml \
+    php5.6-mysqli \
+    php5.6-mcrypt \
     composer
 
     if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
