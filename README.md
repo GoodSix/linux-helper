@@ -1,4 +1,4 @@
-**为[eoogo/ubuntu](https://github.com/eoogo/docker-ubuntu)提供的初始化脚本，用于快速安装配置一些软件**
+**为[eoogo/docker-devt](https://github.com/eoogo/docker-devt)提供的初始化脚本，用于快速安装配置一些软件**
 
 - [基本环境参考](https://github.com/eoogo/docker-ubuntu),[现有可用命令参考](./command.md)
 
