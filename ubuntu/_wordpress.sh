@@ -15,8 +15,13 @@ setup() {
     done
     unar latest-zh_CN.tar.gz && rm -rf latest-zh_CN.tar.gz
     chmod 777 wordpress
+
+    service mysql start
     mysql -uroot -proot -e "create database wordpress;"
+    service mysql stop
+
     read -p '您的域名：' domain
+    if [[ -z $domain ]]; then domain='_'; fi
     (cat <<CONF
 server {
         listen 80;
@@ -24,15 +29,14 @@ server {
         root /var/www/wordpress;
         index index.html index.php;
         location / {
-                try_files \$uri \$uri/ /index.php$request_uri;
+            try_files \$uri \$uri/ /index.php$request_uri;
         }
         include enable-php7.2.conf;
 }
 CONF
     ) > nginx.conf;
-    nginx -s reload
     cat <<HINT
-现在已经成功安装了wordpress, 请打开 http://${domain} 进行安装
+现在已经成功安装了wordpress, 请在浏览器端打开您的域名或服务器IP即可
 
 需要更多帮助可移步 https://www.if-she.com 获取相关资料
 
