@@ -14,7 +14,7 @@ setup() {
         wget https://cn.wordpress.org/latest-zh_CN.tar.gz
     done
     unar latest-zh_CN.tar.gz && rm -rf latest-zh_CN.tar.gz
-    chmod 777 wordpress
+    chmod -R 777 wordpress
 
     service mysql start
     mysql -uroot -proot -e "create database wordpress;"
