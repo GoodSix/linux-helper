@@ -13,7 +13,15 @@ setup() {
     while [[ ! -f latest-zh_CN.tar.gz ]]; do
         wget https://cn.wordpress.org/latest-zh_CN.tar.gz
     done
-    unar latest-zh_CN.tar.gz && rm -rf latest-zh_CN.tar.gz
+    unar latest-zh_CN.tar.gz
+    rm -rf latest-zh_CN.tar.gz
+    (cat <<CONF
+
+define("FS_METHOD", "direct");
+define("FS_CHMOD_DIR", 0777);
+define("FS_CHMOD_FILE", 0777);
+CONF
+    ) >> wordpress/wp-config.php
     chmod -R 777 wordpress
 
     service mysql start
