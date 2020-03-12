@@ -31,6 +31,10 @@ server {
         location / {
             try_files \$uri \$uri/ /index.php$request_uri;
         }
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+            expires max;
+            log_not_found off;
+        }
         include enable-php7.2.conf;
 }
 CONF
