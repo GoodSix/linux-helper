@@ -1,16 +1,20 @@
 # 可用命令
 介绍、适用环境
 
-    _lnmp5.6
-        + 安装集成nginx、php5.6、mysql的环境
-        + ubuntu
-
     _lnmp
         + 安装集成nginx、php7.2、mysql的环境
         + ubuntu
 
+    _lnmp5.6
+        + 安装集成nginx、php5.6、mysql的环境
+        + ubuntu
+
     _mage2
         + 初始化magento2项目
+        + ubuntu
+
+    _wordpress
+        + 安装worldpress
         + ubuntu
 
     mysql-install
@@ -35,10 +39,6 @@
 
     php-install-5.6-xdebug
         + 开启php5.6的xdebug扩展
-        + ubuntu
-
-    php-install-7.2-redis
-        + 安装php7.2的redis模块
         + ubuntu
 
     php-install-7.2

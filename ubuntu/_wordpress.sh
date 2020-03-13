@@ -15,29 +15,6 @@ setup() {
     done
     unar latest-zh_CN.tar.gz
     rm -rf latest-zh_CN.tar.gz
-    (cat <<CONF
-/**
- * Front to the WordPress application. This file doesn't do anything, but loads
- * wp-blog-header.php which does and tells WordPress to load the theme.
- *
- * @package WordPress
- */
-
-/**
- * Tells WordPress to load the WordPress theme and output it.
- *
- * @var bool
- */
-define( 'WP_USE_THEMES', true );
-
-define("FS_METHOD", "direct");
-define("FS_CHMOD_DIR", 0777);
-define("FS_CHMOD_FILE", 0777);
-
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/wp-blog-header.php' );
-CONF
-    ) >> wordpress/index.php
     chmod -R 777 wordpress
 
     service mysql start
@@ -48,18 +25,18 @@ CONF
     if [[ -z $domain ]]; then domain='_'; fi
     (cat <<CONF
 server {
-        listen 80;
-        server_name ${domain};
-        root /var/www/wordpress;
-        index index.html index.php;
-        location / {
-            try_files \$uri \$uri/ /index.php$request_uri;
-        }
-        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-            expires max;
-            log_not_found off;
-        }
-        include enable-php7.2.conf;
+    listen 80;
+    server_name ${domain};
+    root /var/www/wordpress;
+    index index.html index.php;
+    location / {
+        try_files \$uri \$uri/ /index.php\$request_uri;
+    }
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)\$ {
+        expires max;
+        log_not_found off;
+    }
+    include enable-php7.2.conf;
 }
 CONF
     ) > nginx.conf;
@@ -73,6 +50,11 @@ CONF
 密码: root
 数据库主机: localhost
 表前缀(随意)
+
+禁用FTP方式上传请在安装完成后手动在wp-config.php末尾处添加:
+define("FS_METHOD", "direct");
+define("FS_CHMOD_DIR", 0777);
+define("FS_CHMOD_FILE", 0777);
 HINT
 }
 
