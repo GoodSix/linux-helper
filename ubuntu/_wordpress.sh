@@ -16,12 +16,28 @@ setup() {
     unar latest-zh_CN.tar.gz
     rm -rf latest-zh_CN.tar.gz
     (cat <<CONF
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
 
 define("FS_METHOD", "direct");
 define("FS_CHMOD_DIR", 0777);
 define("FS_CHMOD_FILE", 0777);
+
+/** Loads the WordPress Environment and Template */
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 CONF
-    ) >> wordpress/wp-config.php
+    ) >> wordpress/index.php
     chmod -R 777 wordpress
 
     service mysql start
