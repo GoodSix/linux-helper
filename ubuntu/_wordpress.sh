@@ -55,6 +55,11 @@ CONF
 define("FS_METHOD", "direct");
 define("FS_CHMOD_DIR", 0777);
 define("FS_CHMOD_FILE", 0777);
+
+在添加ssl证书后某些css可能无法加载, 解决方案是在 wp-config.php 顶部添加:
+\$_SERVER['HTTPS'] = 'on';
+define('FORCE_SSL_LOGIN', true);
+define('FORCE_SSL_ADMIN', true);
 HINT
 }
 
