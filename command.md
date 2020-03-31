@@ -33,20 +33,20 @@
         + 从PPA添加PHP镜像源
         + ubuntu
 
-    php-install-5.6
-        + 安装PHP5.6和常用扩展包
-        + ubuntu
-
     php-install-5.6-xdebug
         + 开启php5.6的xdebug扩展
         + ubuntu
 
-    php-install-7.2
-        + 安装PHP7.2和常用扩展包
+    php-install-5.6
+        + 安装PHP5.6和常用扩展包
         + ubuntu
 
     php-install-7.2-xdebug
         + 开启php7.2的xdebug扩展
+        + ubuntu
+
+    php-install-7.2
+        + 安装PHP7.2和常用扩展包
         + ubuntu
 
     redis-install

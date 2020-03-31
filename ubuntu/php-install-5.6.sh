@@ -22,8 +22,11 @@ setup() {
     php5.6-xsl \
     php5.6-xml \
     php5.6-mysqli \
-    php5.6-mcrypt \
-    composer
+    php5.6-mcrypt
+    
+    # install composer
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
     if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
     echo 'location ~ [^/]\.php(/|$) {

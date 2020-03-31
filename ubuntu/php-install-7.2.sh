@@ -23,11 +23,13 @@ setup() {
     php7.2-dom \
     php7.2-xml \
     php7.2-xsl \
-    composer \
     libmcrypt-dev && \
     echo -e '' | pecl install mcrypt && \
     echo 'extension=mcrypt.so' >> /etc/php/7.2/fpm/php.ini && \
     echo 'extension=mcrypt.so' >> /etc/php/7.2/cli/php.ini
+    # install composer
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
   if [[ ! -d /etc/nginx ]]; then mkdir /etc/nginx; fi
   echo 'location ~ [^/]\.php(/|$) {
