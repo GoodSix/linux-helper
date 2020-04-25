@@ -9,6 +9,7 @@ before() {
 
 setup() {
     echo -e 'y' | source `dirname $1`/eoogo.sh php-install-5.6
+    echo -e 'y' | source `dirname $1`/eoogo.sh composer-install
     echo -e 'y' | source `dirname $1`/eoogo.sh nginx-install
     echo -e 'y' | source `dirname $1`/eoogo.sh mysql-install
 }
