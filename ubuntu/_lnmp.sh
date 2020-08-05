@@ -1,33 +1,19 @@
 #!/bin/bash
-before() {
-    if [[ `type php7.2` && `type nginx` && `type mysql` ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
 
-setup() {
-    echo -e 'y' | source `dirname $1`/eoogo.sh php-install-7.2
-    echo -e 'y' | source `dirname $1`/eoogo.sh composer-install
-    echo -e 'y' | source `dirname $1`/eoogo.sh nginx-install
-    echo -e 'y' | source `dirname $1`/eoogo.sh mysql-install
-}
-
-start() {
-    service nginx start
-    service php7.2-fpm start
-    service mysql start
-}
-
-stop() {
-    service nginx stop
-    service php7.2-fpm stop
-    service mysql stop
-}
-
-# /etc/nginx
-# /etc/php
-# /etc/mysql
-# /var/lib/mysql
 # 安装集成nginx、php7.2、mysql的环境
+
+if [[ ! `which php7.2` ]]; then
+    curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/php-install-7.2.sh
+    service php7.2-fpm start
+fi
+
+if [[ ! `which nginx` ]]; then
+    curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/nginx-install.sh
+    service nginx start
+fi
+
+if [[ ! `which mysql` ]]; then
+    curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/mysql-install.sh
+    service mysql start
+fi
+

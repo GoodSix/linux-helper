@@ -1,29 +1,26 @@
 #!/bin/bash
-before() {
-    if [[ `type php7.2` && `type nginx` && `type mysql` ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
 
-setup() {
-    echo -e 'y' | source `dirname $1`/eoogo.sh _lnmp
-    cd /var/www;
-    while [[ ! -f latest-zh_CN.tar.gz ]]; do
-        wget https://cn.wordpress.org/latest-zh_CN.tar.gz
-    done
-    unar latest-zh_CN.tar.gz
-    rm -rf latest-zh_CN.tar.gz
-    chmod -R 777 wordpress
+# 安装worldpress
 
-    service mysql start
-    mysql -uroot -proot -e "create database wordpress;"
-    service mysql stop
+curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/_lnmp.sh
 
-    read -p '您的域名：' domain
-    if [[ -z $domain ]]; then domain='_'; fi
-    (cat <<CONF
+cd /var/www;
+
+while [[ ! -f latest-zh_CN.tar.gz ]]; do
+    wget https://cn.wordpress.org/latest-zh_CN.tar.gz
+done
+
+unar latest-zh_CN.tar.gz
+rm -rf latest-zh_CN.tar.gz
+chmod -R 777 wordpress
+
+service mysql start
+mysql -uroot -proot -e "create database wordpress;"
+service mysql stop
+
+read -p '您的域名：' domain
+if [[ -z $domain ]]; then domain='_'; fi
+(cat <<CONF
 server {
     listen 80;
     server_name ${domain};
@@ -39,8 +36,9 @@ server {
     include enable-php7.2.conf;
 }
 CONF
-    ) > nginx.conf;
-    cat <<HINT
+) > nginx.conf;
+
+cat <<HINT
 现在已经成功安装了wordpress, 请在浏览器端打开您的域名或服务器IP即可
 
 需要更多帮助可移步 https://www.if-she.com 获取相关资料
@@ -61,22 +59,3 @@ define("FS_CHMOD_FILE", 0777);
 define('FORCE_SSL_LOGIN', true);
 define('FORCE_SSL_ADMIN', true);
 HINT
-}
-
-start() {
-    service nginx start
-    service php7.2-fpm start
-    service mysql start
-}
-
-stop() {
-    service nginx stop
-    service php7.2-fpm stop
-    service mysql stop
-}
-
-# /etc/nginx
-# /etc/php
-# /etc/mysql
-# /var/lib/mysql
-# 安装worldpress

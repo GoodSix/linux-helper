@@ -1,22 +1,10 @@
 #!/bin/bash
-before() {
-    type nginx
-    return $?
-}
 
-setup() {
+# 安装nginx服务
+
+if [[ ! `which nginx` ]]; then
     apt install -y nginx
     echo 'include /var/www/*.conf;' > /etc/nginx/conf.d/include-www.conf
-    rm -f /etc/nginx/sites-enabled/default
-}
+    # rm -f /etc/nginx/sites-enabled/default
+fi
 
-start() {
-    service nginx start
-}
-
-stop() {
-    service nginx stop
-}
-
-# /etc/nginx
-# 安装nginx服务
