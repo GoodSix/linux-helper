@@ -27,6 +27,8 @@ mysql -uroot -proot -e "create database wordpress;"
 service mysql stop
 
 read -p '您的域名：' domain
+
+
 if [[ -z $domain ]]; then domain='_'; fi
 
 (cat <<CONF
