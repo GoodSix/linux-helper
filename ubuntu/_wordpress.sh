@@ -2,7 +2,7 @@
 
 # 安装worldpress
 
-curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/_lnmp.sh
+curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/_lnmp.sh | bash
 
 cd /var/www;
 
