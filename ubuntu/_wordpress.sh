@@ -6,9 +6,17 @@ curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/_lnmp.sh 
 
 cd /var/www;
 
+if [[ ! `which wget` ]]; then
+    apt install wget -y
+fi
+
 while [[ ! -f latest-zh_CN.tar.gz ]]; do
     wget https://cn.wordpress.org/latest-zh_CN.tar.gz
 done
+
+if [[ ! `which unar` ]]; then
+    apt install unar -y
+fi
 
 unar latest-zh_CN.tar.gz
 rm -rf latest-zh_CN.tar.gz
@@ -20,6 +28,7 @@ service mysql stop
 
 read -p '您的域名：' domain
 if [[ -z $domain ]]; then domain='_'; fi
+
 (cat <<CONF
 server {
     listen 80;
