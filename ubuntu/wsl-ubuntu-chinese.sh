@@ -1,7 +1,7 @@
 #!/bin/bash
 # wsl - Ubuntu中文环境
 
-sudo apt-get install language-pack-zh-hans -y
+apt-get install language-pack-zh-hans -y
 
 (cat <<CONF
 LANG="zh_CN.UTF-8"
@@ -17,14 +17,30 @@ zh_CN GB2312
 CONF
 ) >> /var/lib/locales/supported.d/local
 
-sudo locale-gen
+locale-gen
 
-sudo apt install language-pack-zh-hans -y
-sudo apt install manpages-zh -y
+apt install language-pack-zh-hans -y
+apt install manpages-zh -y
 
 
 (cat <<CONF
+
 export DISPLAY=\$(awk '/nameserver / {print \$2; exit}' /etc/resolv.conf 2>/dev/null):0
 export LIBGL_ALWAYS_INDIRECT=1
 CONF
 ) >> ~/.bashrc
+
+apt-get --assume-yes install fcitx fcitx-googlepinyin dbus-x11
+
+(cat <<CONF
+
+export LC_ALL="zh_CN.UTF-8"
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+CONF
+) >> /etc/profile
+
+locale-gen zh_CN.UTF-8
+
+fcitx
