@@ -14,13 +14,13 @@ else
 xdebug.remote_autostart=On
 xdebug.remote_enable=On
 xdebug.remote_host=0.0.0.0
-xdebug.remote_port=9001' >> /etc/php/7.2/fpm/php.ini && \
+xdebug.remote_port=9000' >> /etc/php/7.2/fpm/php.ini && \
     echo '
 
 [Xdebug]
 xdebug.remote_autostart=On
 xdebug.remote_enable=On
 xdebug.remote_host=0.0.0.0
-xdebug.remote_port=9001' >> /etc/php/7.2/cli/php.ini && \
+xdebug.remote_port=9000' >> /etc/php/7.2/cli/php.ini && \
     service php7.2-fpm restart # 重启PHP服务
 fi
