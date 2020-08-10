@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # 安装PHP5.6和常用扩展包
 
 
 if [[ ! `which php5.6` ]]; then
-    curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/php-add-ppa.sh | bash
+    curl -o- https://shell.if-she.com/ubuntu/php-add-ppa | bash
 
     apt install -y php5.6-fpm \
         php5.6-dev \

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 更新php的composer到最新版
 
 if [[ ! `which composer` ]]; then

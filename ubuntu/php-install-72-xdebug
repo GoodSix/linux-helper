@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 开启php7.2的xdebug扩展
 
 if [[ ! `type php7.2` ]]; then

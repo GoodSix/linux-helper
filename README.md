@@ -1,6 +1,1 @@
-Ubuntu下通过apt快速部署环境的一种实现方式
-
-```shell
-curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/add-apt-repository.sh | bash
-curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/_lnmp.sh | bash
-```
+Ubuntu下通过apt快速部署环境的一种实现方式 ## Error ### bash: add-apt-repository: command not found `curl -o- https://shell.if-she.com/ubuntu/add-apt-repository | bash` # ubuntu- 更新php的composer到最新版 `curl -o- https://shell.if-she.com/ubuntu/composer-install | bash`- 安装集成nginx、php7.2、mysql的环境 `curl -o- https://shell.if-she.com/ubuntu/_lnmp | bash`- 安装集成nginx、php5.6、mysql的环境 `curl -o- https://shell.if-she.com/ubuntu/_lnmp56 | bash`- 安装mysql5.7服务,默认开启远程,账号:root密码:root `curl -o- https://shell.if-she.com/ubuntu/mysql-install | bash`- 安装nginx服务 `curl -o- https://shell.if-she.com/ubuntu/nginx-install | bash`- 为当前用户安装nodejs `curl -o- https://shell.if-she.com/ubuntu/node-install | bash`- 从PPA添加PHP镜像源 `curl -o- https://shell.if-she.com/ubuntu/php-add-ppa | bash`- 安装PHP5.6和常用扩展包 `curl -o- https://shell.if-she.com/ubuntu/php-install-56 | bash`- 开启php5.6的xdebug扩展 `curl -o- https://shell.if-she.com/ubuntu/php-install-56-xdebug | bash`- 安装PHP7.2和常用扩展包 `curl -o- https://shell.if-she.com/ubuntu/php-install-72 | bash`- 开启php7.2的xdebug扩展 `curl -o- https://shell.if-she.com/ubuntu/php-install-72-xdebug | bash`- wsl - Ubuntu中文环境 `curl -o- https://shell.if-she.com/ubuntu/wsl-ubuntu-chinese | bash`

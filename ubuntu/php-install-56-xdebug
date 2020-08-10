@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 开启php5.6的xdebug扩展
 
 if [[ ! `type php5.6` ]]; then

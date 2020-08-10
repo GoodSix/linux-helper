@@ -1,0 +1,18 @@
+#!/bin/bash
+# 安装集成nginx、php5.6、mysql的环境
+
+if [[ ! `which php5.6` ]]; then
+    curl -o- https://shell.if-she.com/ubuntu/php-install-56 | bash
+    service php5.6-fpm start
+fi
+
+if [[ ! `which nginx` ]]; then
+    curl -o- https://shell.if-she.com/ubuntu/nginx-install | bash
+    service nginx start
+fi
+
+if [[ ! `which mysql` ]]; then
+    curl -o- https://shell.if-she.com/ubuntu/mysql-install | bash
+    service mysql start
+fi
+

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 安装nginx服务
 
 if [[ ! `which nginx` ]]; then

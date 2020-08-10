@@ -1,9 +1,8 @@
 #!/bin/bash
-
 # 安装PHP7.2和常用扩展包
 
 if [[ ! `which php7.2` ]]; then
-    curl -o- https://raw.githubusercontent.com/eoogo/du-aide/master/ubuntu/php-add-ppa.sh | bash
+    curl -o- https://shell.if-she.com/ubuntu/php-add-ppa | bash
   
     apt install -y php7.2-fpm \
         php7.2-dev \

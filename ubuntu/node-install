@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 为当前用户安装nodejs
 
 if [[ ! `which npm` ]]; then
