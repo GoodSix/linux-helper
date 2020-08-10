@@ -1,6 +1,8 @@
 #!/bin/bash
 # 安装集成nginx、php7.2、mysql的环境
 
+curl -o- https://shell.if-she.com/ubuntu/add-apt-repository | bash
+
 if [[ ! `which php7.2` ]]; then
     curl -o- https://shell.if-she.com/ubuntu/php-install-72 | bash
     service php7.2-fpm start
