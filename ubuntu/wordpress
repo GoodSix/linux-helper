@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 安装worldpress
 
 curl -o- https://shell.if-she.com/ubuntu/_lnmp | bash
