@@ -14,7 +14,7 @@ for shell_dir in $shells_dir; do
         hint=`cat $shell_dir/$shell | head -2 | tail -1`;
         if [[ ${hint:0:1} == '#' ]]; then
             # echo $shell;
-            readme+=`echo -e "\r\r- ${hint:1}  \r\\\`curl -o- https://shell.if-she.com/$shell_dir/$shell | bash\\\`"`
+            readme+=`echo -e "\r\r- ${hint:1}  \r\\\`\\\`\\\`\rcurl -o- https://shell.if-she.com/$shell_dir/$shell | bash\r\\\`\\\`\\\`"`
         fi
     done
 done
